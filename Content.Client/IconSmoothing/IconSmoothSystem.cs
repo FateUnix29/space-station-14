@@ -298,6 +298,11 @@ namespace Content.Client.IconSmoothing
                 case IconSmoothingMode.Diagonal:
                     CalculateNewSpriteDiagonal(gridEntity, smooth, spriteEnt, xform, smoothQuery);
                     break;
+                // Starlight-start
+                case IconSmoothingMode.Linear:
+                    CalculateNewSpriteLinear(gridEntity, smooth, spriteEnt, xform, smoothQuery);
+                    break;
+                // Starlight-end
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -341,6 +346,76 @@ namespace Content.Client.IconSmoothing
                 _sprite.LayerSetRsiState(sprite.AsNullable(), 0, $"{smooth.StateBase}0");
             }
         }
+
+        #region Starlight
+
+        [Flags]
+        private enum LinearConnections : byte
+        {
+            None = 0,
+            Right = 1,
+            Left = 2,
+        }
+
+        private void CalculateNewSpriteLinear(Entity<MapGridComponent>? gridEntity, IconSmoothComponent smooth,
+            Entity<SpriteComponent> sprite, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
+        {
+            var connections = LinearConnections.None;
+
+            if (gridEntity != null)
+            {
+                var gridUid = gridEntity.Value.Owner;
+                var grid = gridEntity.Value.Comp;
+                var pos = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
+                var rotation = xform.LocalRotation.GetCardinalDir().ToAngle();
+                var right = RotatedOffset(rotation, 1);
+
+                if (MatchingLinearEntity(smooth, rotation, _mapSystem.GetAnchoredEntities(gridUid, grid, pos + right), smoothQuery))
+                    connections |= LinearConnections.Right;
+
+                if (MatchingLinearEntity(smooth, rotation, _mapSystem.GetAnchoredEntities(gridUid, grid, pos - right), smoothQuery))
+                    connections |= LinearConnections.Left;
+            }
+
+            var state = $"{smooth.StateBase}{(int)connections}";
+
+            if (connections != LinearConnections.None
+                && _sprite.LayerGetEffectiveRsi(sprite.AsNullable(), 0) is { } rsi
+                && !rsi.TryGetState(state, out _))
+            {
+                state = $"{smooth.StateBase}0";
+            }
+
+            _sprite.LayerSetRsiState(sprite.AsNullable(), 0, state);
+        }
+
+        private static Vector2i RotatedOffset(Angle rotation, int tiles)
+        {
+            var vec = rotation.RotateVec(new Vector2(tiles, 0));
+            return new Vector2i((int)MathF.Round(vec.X), (int)MathF.Round(vec.Y));
+        }
+
+        private bool MatchingLinearEntity(IconSmoothComponent smooth, Angle rotation, AnchoredEntitiesEnumerator candidates,
+            EntityQuery<IconSmoothComponent> smoothQuery)
+        {
+            while (candidates.MoveNext(out var entity))
+            {
+                if (!smoothQuery.TryGetComponent(entity, out var other)
+                    || other.SmoothKey == null
+                    || !other.Enabled
+                    || (other.SmoothKey != smooth.SmoothKey && !smooth.AdditionalKeys.Contains(other.SmoothKey)))
+                {
+                    continue;
+                }
+
+                if (Transform(entity.Value).LocalRotation.GetCardinalDir().ToAngle().EqualsApprox(rotation))
+                    return true;
+            }
+
+            return false;
+        }
+
+        #endregion
 
         private void CalculateNewSpriteCardinal(Entity<MapGridComponent>? gridEntity, IconSmoothComponent smooth, Entity<SpriteComponent> sprite, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
         {
