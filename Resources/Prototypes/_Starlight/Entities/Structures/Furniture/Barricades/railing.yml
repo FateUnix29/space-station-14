@@ -1,0 +1,72 @@
+- type: entity
+  id: BarricadeRailing
+  parent: BaseStructure
+  name: rod barricade
+  description: Metal rods bent and welded into a waist-high barrier. Shots crossing it sometimes don't make it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Barricades/railing.rsi
+    noRot: false
+    layers:
+    - state: full_0
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Barricades/railing.rsi
+    state: full_0
+  - type: IconSmooth
+    mode: Linear
+    key: BarricadeRailing
+    base: full_
+  - type: Appearance
+  - type: SmoothDamageStages
+    thresholds: [ 40, 80, 120 ]
+  - type: ProjectileCover
+    blockChance: 0.5
+  - type: InteractionOutline
+  - type: Climbable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+        - BulletImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 160
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: BarricadeRailing
+    node: barricade
+  - type: Tag
+    tags:
+    - ForceNoFixRotations

@@ -377,16 +377,30 @@ namespace Content.Client.IconSmoothing
                     connections |= LinearConnections.Left;
             }
 
-            var state = $"{smooth.StateBase}{(int)connections}";
+            _sprite.LayerSetRsiState(sprite.AsNullable(), 0, ResolveLinearState(sprite, smooth, (int)connections));
+        }
 
-            if (connections != LinearConnections.None
-                && _sprite.LayerGetEffectiveRsi(sprite.AsNullable(), 0) is { } rsi
-                && !rsi.TryGetState(state, out _))
+        private string ResolveLinearState(Entity<SpriteComponent> sprite, IconSmoothComponent smooth, int index)
+        {
+            var suffix = smooth.StateSuffix;
+            string[] candidates =
+            [
+                $"{smooth.StateBase}{index}{suffix}",
+                $"{smooth.StateBase}{index}",
+                $"{smooth.StateBase}0{suffix}",
+                $"{smooth.StateBase}0",
+            ];
+
+            if (_sprite.LayerGetEffectiveRsi(sprite.AsNullable(), 0) is not { } rsi)
+                return candidates[0];
+
+            foreach (var candidate in candidates)
             {
-                state = $"{smooth.StateBase}0";
+                if (rsi.TryGetState(candidate, out _))
+                    return candidate;
             }
 
-            _sprite.LayerSetRsiState(sprite.AsNullable(), 0, state);
+            return candidates[^1];
         }
 
         private static Vector2i RotatedOffset(Angle rotation, int tiles)
