@@ -24,7 +24,7 @@
     - TableFancyOrange
     - TableFancyWhite
   components:
-  - type: TableFlippable
+  - type: FlippableStructure
     flippedPrototype: !type:CreateVariants
       values:
       - TableFlipped

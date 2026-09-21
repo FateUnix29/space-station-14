@@ -334,16 +334,3 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-
-- type: construction
-  id: BarricadeRailing
-  graph: BarricadeRailing
-  startNode: start
-  targetNode: barricade
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: true
-  canBuildInImpassable: false
-  conditions:
-  - !type:TileNotBlocked

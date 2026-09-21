@@ -35,6 +35,12 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
             args.Cancelled = true;
     }
 
+    public void SetBlockChance(Entity<ProjectileCoverComponent> cover, float chance)
+    {
+        cover.Comp.BlockChance = chance;
+        Dirty(cover);
+    }
+
     public bool IsShotStopped(Entity<ProjectileCoverComponent> cover, EntityUid shot, EntityUid? shooter, float? distance = null)
     {
         var comp = cover.Comp;

@@ -41,7 +41,7 @@
   suffix: Flipped
   name: flipped table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: Table
   - type: IconSmooth
     key: TableFlipped
@@ -52,7 +52,7 @@
   suffix: Flipped
   name: flipped reinforced table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableReinforced
   - type: IconSmooth
     key: TableReinforcedFlipped
@@ -65,7 +65,7 @@
   suffix: Flipped
   name: flipped glass table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableGlass
   - type: IconSmooth
     key: TableGlassFlipped
@@ -78,7 +78,7 @@
   suffix: Flipped
   name: flipped cardboard table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableCard
   - type: IconSmooth
     key: TableCardFlipped
@@ -91,7 +91,7 @@
   suffix: Flipped
   name: flipped reinforced glass table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableReinforcedGlass
   - type: IconSmooth
     key: TableReinforcedGlassFlipped
@@ -104,7 +104,7 @@
   suffix: Flipped
   name: flipped plasma glass table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TablePlasmaGlass
   - type: IconSmooth
     key: TablePlasmaGlassFlipped
@@ -117,7 +117,7 @@
   suffix: Flipped
   name: flipped brass table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableBrass
   - type: IconSmooth
     key: TableBrassFlipped
@@ -128,7 +128,7 @@
   suffix: Flipped
   name: flipped wood table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableWood
   - type: IconSmooth
     key: TableWoodFlipped
@@ -141,7 +141,7 @@
   suffix: Flipped
   name: flipped gambling table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableCarpet
   - type: IconSmooth
     key: TableCarpetFlipped
@@ -154,7 +154,7 @@
   suffix: Flipped
   name: flipped stone table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableStone
   - type: IconSmooth
     key: TableStoneFlipped
@@ -167,7 +167,7 @@
   suffix: Flipped
   name: flipped web table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableWeb
   - type: IconSmooth
     key: TableWebFlipped
@@ -180,7 +180,7 @@
   suffix: Flipped
   name: flipped xeno table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableXeno
   - type: IconSmooth
     key: TableXenoFlipped
@@ -193,7 +193,7 @@
   suffix: Flipped
   name: flipped blue fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyBlue
   - type: IconSmooth
     key: TableFancyBlueFlipped
@@ -204,7 +204,7 @@
   suffix: Flipped
   name: flipped sky blue fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancySkyBlue
   - type: IconSmooth
     key: TableFancySkyBlueFlipped
@@ -215,7 +215,7 @@
   suffix: Flipped
   name: flipped cyan fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyCyan
   - type: IconSmooth
     key: TableFancyCyanFlipped
@@ -226,7 +226,7 @@
   suffix: Flipped
   name: flipped black fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyBlack
   - type: IconSmooth
     key: TableFancyBlackFlipped
@@ -237,7 +237,7 @@
   suffix: Flipped
   name: flipped red fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyRed
   - type: IconSmooth
     key: TableFancyRedFlipped
@@ -248,7 +248,7 @@
   suffix: Flipped
   name: flipped purple fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyPurple
   - type: IconSmooth
     key: TableFancyPurpleFlipped
@@ -259,7 +259,7 @@
   suffix: Flipped
   name: flipped pink fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyPink
   - type: IconSmooth
     key: TableFancyPinkFlipped
@@ -270,7 +270,7 @@
   suffix: Flipped
   name: flipped green fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyGreen
   - type: IconSmooth
     key: TableFancyGreenFlipped
@@ -281,7 +281,7 @@
   suffix: Flipped
   name: flipped orange fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyOrange
   - type: IconSmooth
     key: TableFancyOrangeFlipped
@@ -292,7 +292,7 @@
   suffix: Flipped
   name: flipped white fancy table
   components:
-  - type: FlippedTable
+  - type: FlippedStructure
     uprightPrototype: TableFancyWhite
   - type: IconSmooth
     key: TableFancyWhiteFlipped
